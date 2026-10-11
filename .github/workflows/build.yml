@@ -1,9 +1,14 @@
-```yaml
+
 name: Build MurderAxe
 
 on:
   push:
+    branches:
+      - main
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -20,11 +25,13 @@ jobs:
           java-version: '21'
           cache: maven
 
-      - name: Build plugin
+      - name: Build with Maven
         run: mvn -B package
 
-      - name: Upload plugin JAR
+      - name: Upload build output
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: MurderAxe
-          path: target/MurderAxe-1.0.0.jar
+          path: target/*.jar
+          if-no-files-found: error
