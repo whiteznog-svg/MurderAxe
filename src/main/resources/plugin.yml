@@ -1,0 +1,13 @@
+name: MurderAxe
+version: 1.0.0
+main: me.murderaxe.MurderAxe
+api-version: '1.21'
+commands:
+  murderaxe:
+    description: Gives you the Murder Axe
+    usage: /murderaxe
+    permission: murderaxe.give
+permissions:
+  murderaxe.give:
+    description: Allows the player to receive Murder Axe
+    default: op
